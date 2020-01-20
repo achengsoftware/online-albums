@@ -1,2 +1,2 @@
 # online-albums-
-online photos ，you can upload images ,and dowonload imags
+online photos ，you can upload images ,and dowonload imags.
