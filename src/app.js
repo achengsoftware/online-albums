@@ -22,7 +22,6 @@ app.use('/user',userRouter)
 
 //处理出错
 app.use((err,req,res) => {
-    console.log('========err=======')
     let {errno,message} = err
     res.json({errno,message})
 })

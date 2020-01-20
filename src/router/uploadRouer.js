@@ -53,6 +53,22 @@ router.get('/',async (req,res) => {
     res.json(images)
 })
 
+//删除所有
+router.get('/removeAll',async (req,res) => {
+    let images = await Photo.find()
+    images.forEach(element => {
+        Photo.deleteMany({_id:element._id},err => {
+            if(err){
+                return  res.json({errorno:-3,message:'del err.'})
+            }
+            if(fs.existsSync(element.url)){
+                fs.unlinkSync(element.url)
+            }
+        })
+    })
+    res.json({errorno:0,message:'ok.'})
+})
+
 // 删除
 router.get('/remove',async (req,res) =>{
     console.log(req.query)
@@ -84,6 +100,11 @@ router.get('/photosByPages',(req,res) => {
                     let totalPage = Math.ceil(count/curPageSize)
                     let nextPage = totalPage<= curIndex ? 1:curIndex+1
                     let prePage = curIndex===1 ? 1:curIndex-1
+                    let base = `${req.protocol}://${req.get('host')}/`
+                    doc.forEach(element => {
+                        element.url = base + element.url
+                        //console.log(element.url)
+                    });
                     return res.json(
                         {
                             curPage:curIndex,
