@@ -1,0 +1,37 @@
+{
+  "name": "online-albums",
+  "version": "1.0.0",
+  "description": "online photos app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon main.js",
+    "build": "babel src -d dist",
+    "prestart": "npm run build",
+    "start": "node  dist/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/achengsoftware/online-albums.git"
+  },
+  "keywords": [
+    "online",
+    "photos",
+    "node.js"
+  ],
+  "author": "achengsoftware",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/achengsoftware/online-albums/issues"
+  },
+  "homepage": "https://github.com/achengsoftware/online-albums#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "nodemon": "^2.0.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
