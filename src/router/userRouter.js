@@ -46,4 +46,24 @@ router.get('/',(req,res,next) => {
         res.json([])
     })
 })
+//登录
+router.post('/login',(req,res =>{
+    User.find({name:req.body.username,password:req.body.password})
+    .then(data =>{
+        if(data.length>0){
+            res.json({errno:0})
+        }else{
+            res.json({errno:-1})
+        }
+    })
+    .catch(err=>{
+        res.json({errno:-1})
+    })
+}))
+
+router.get('/logout', function (req, res) {
+    req.session.userName = null; // 删除session
+    res.redirect('login');
+});
+
 module.exports = router

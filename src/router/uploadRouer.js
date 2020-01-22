@@ -3,8 +3,8 @@ import multer from 'multer'
 import fs from 'fs'
 
 import Photo from '../db/models/PhotosModel'
-import { Promise } from 'mongoose'
-import { resolve } from 'url'
+
+
 
 let router = express.Router()
 
@@ -24,6 +24,7 @@ let upload = multer({storage,
 //图片信息保存到数据库
 async function saveImage2Db(req,res,next){
     try {
+        console.log(req.file)
         let url = `${req.file.destination}/${req.file.filename}`
         let {uploaderId} = req.body
         if(!uploaderId){
